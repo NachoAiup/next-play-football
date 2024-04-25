@@ -2,7 +2,7 @@
 
 import type {FootballPitch} from "@/api";
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export const retrieveFavoritesPitches = (): string[] | null => {
   const storedFavoritePitches = localStorage.getItem("favorites");
@@ -11,9 +11,11 @@ export const retrieveFavoritesPitches = (): string[] | null => {
 };
 
 export function FavoriteButton({footballPitch}: {footballPitch: FootballPitch}) {
-  const [isFavorite, setIsFavorite] = useState(
-    window.localStorage.getItem("favorites")?.includes(footballPitch.id),
-  );
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    setIsFavorite(window.localStorage.getItem("favorites")?.includes(footballPitch.id) || false);
+  }, []);
 
   const handleFavoriteClick = () => {
     let favoritePitches = retrieveFavoritesPitches() || [];
