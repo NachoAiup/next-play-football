@@ -3,6 +3,8 @@ import type {FootballPitch} from "@/api";
 import Link from "next/link";
 import Image from "next/image";
 
+import {FavoriteButton} from "./FavoriteButton";
+
 interface FootballPitchProps {
   footballPitch: FootballPitch;
 }
@@ -27,6 +29,7 @@ export function FootballPitchCard({footballPitch}: FootballPitchProps) {
           <span>{footballPitch.name}</span>
         </Link>
       </h2>
+      <FavoriteButton footballPitch={footballPitch} />
       <div className="flex w-full cursor-pointer justify-around border-y-[0.5px] border-transparent py-1 transition duration-300 ease-in hover:border-y-[0.5px] hover:border-slate-500">
         <div className="flex flex-col items-center justify-center">
           <div className="flex h-6 items-center">
